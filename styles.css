@@ -1,0 +1,114 @@
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  background: #f8f9fc;
+}
+section {
+  margin: 40px 0;
+}
+
+/* ===== 1. Box Animation ===== */
+.box {
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+  background: tomato;
+  border-radius: 8px;
+}
+.box.animate {
+  animation: bounce 1s ease-in-out;
+}
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-100px); }
+  100% { transform: translateY(0); }
+}
+
+/* ===== 2. Card Flip ===== */
+.card {
+  width: 120px;
+  height: 160px;
+  perspective: 1000px;
+  margin: 20px auto;
+  cursor: pointer;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 10px;
+}
+.card-front {
+  background: #0077cc;
+  color: white;
+}
+.card-back {
+  background: #ff9800;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+/* ===== 3. Loading Spinner ===== */
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #ddd;
+  border-top: 6px solid #0077cc;
+  border-radius: 50%;
+  margin: 20px auto;
+  display: none; /* hidden by default */
+}
+.loader.active {
+  display: block;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== 4. Popup Modal ===== */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: none;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+.modal.show {
+  display: flex;
+  animation: fadeIn 0.3s;
+}
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  animation: slideUp 0.4s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
